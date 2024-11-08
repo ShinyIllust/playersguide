@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args){
         /*
          * Rules: Players draw cards from their shuffled deck.
-         * Before each draw, players can: Choose to drop out of the round.
+         * Before each draw, players can choose to drop out of the round.
          * If a player's hand exceeds 21 or both players drops out, the round ends.
          * Aces count as 11, unless this would exceed 21, where they will count as 1.
          * Face cards count as 10.
@@ -40,6 +40,8 @@ public class Main {
                 playerOne.takeTurn(turnCount);
                 if (playerTwo.inTheGame) {
                     activeTurn = false;
+                } else {
+                    turnCount++;
                 }
             } else {
 
@@ -59,6 +61,9 @@ public class Main {
             //When both players are out of the game, end the round and determine the winner.
             if (!playerOne.inTheGame && !playerTwo.inTheGame){
                 turnCount = 0;
+                activeTurn = true;
+                playerOne.clearHand();
+                playerTwo.clearHand();
                 if(playerOne.lastScore > playerTwo.lastScore){
                     System.out.println(playerOne.name + " wins the round!");
                     playerTwo.defend(playerOne.attack());
@@ -72,11 +77,11 @@ public class Main {
 
             //When a player's HP drops to 0, end the game.
             if(playerOne.hitPoints <= 0){
-                System.out.println(playerOne.name + " has been defeated!" + playerTwo.name + " wins!");
+                System.out.println(playerOne.name + " has been defeated! " + playerTwo.name + " wins!");
                 playGame = false;
             }
             if(playerTwo.hitPoints <= 0){
-                System.out.println(playerTwo.name + " has been defeated!" + playerOne.name + " wins!");
+                System.out.println(playerTwo.name + " has been defeated! " + playerOne.name + " wins!");
                 playGame = false;
             }
         }

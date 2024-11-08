@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Deck {
-    int cardsDrawn = -1;
+    private int cardsDrawn = -1;
 
-    Card[] deck = new Card[52];
+    private final Card[] deck = new Card[52];
 
     Deck(){
         //Create a deck of cards, one of each combination of suit and rank.
@@ -27,6 +27,11 @@ public class Deck {
     }
 
     protected Card drawCard(){
+        if(cardsDrawn >= 52){
+            System.out.println("You are out of cards! Shuffling your deck...");
+            shuffleDeck();
+            cardsDrawn = -1;
+        }
         cardsDrawn++;
         return deck[cardsDrawn];
     }

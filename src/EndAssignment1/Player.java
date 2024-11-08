@@ -24,7 +24,6 @@ public class Player {
     protected void drawTwo(){
         hand[0] = deck.drawCard();
         hand[1] = deck.drawCard();
-        inTheGame = true;
     }
 
     protected void takeTurn(int turnCount){
@@ -104,5 +103,10 @@ public class Player {
         System.out.println((attack - lastScore) + " damage!");
         hitPoints = hitPoints - (attack - lastScore);
         System.out.println(name + " has " + hitPoints + " HP left!");
+    }
+
+    void clearHand(){
+        Arrays.fill(hand, null);
+        inTheGame = true;
     }
 }
