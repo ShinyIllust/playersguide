@@ -1,6 +1,5 @@
 package EndAssignment1;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -15,10 +14,6 @@ public class Main {
          * If your hand exceeded 21, your card score is set to 0;
          * A player has 30 hit points. losing all means you lose the game!
          */
-
-        String playerOneName;
-        String playerTwoName;
-        String action;
 
         Scanner scanner = new Scanner(System.in);
         boolean playGame = true;
@@ -38,7 +33,7 @@ public class Main {
 
                 //On a new round, display HP and draw two cards.
                 if(turnCount == 0){
-                    System.out.println(playerOne.name + " has " + playerOne.hitPointsCurrent + " HP.");
+                    System.out.println(playerOne.name + " has " + playerOne.hitPoints + " HP.");
                     playerOne.drawTwo();
                 }
 
@@ -50,7 +45,7 @@ public class Main {
 
                 //On a new round, display HP and draw two cards.
                 if(turnCount == 0){
-                    System.out.println(playerTwo.name + " has " + playerTwo.hitPointsCurrent + " HP.");
+                    System.out.println(playerTwo.name + " has " + playerTwo.hitPoints + " HP.");
                     playerTwo.drawTwo();
                 }
 
@@ -76,11 +71,11 @@ public class Main {
             }
 
             //When a player's HP drops to 0, end the game.
-            if(playerOne.hitPointsCurrent <= 0){
+            if(playerOne.hitPoints <= 0){
                 System.out.println(playerOne.name + " has been defeated!" + playerTwo.name + " wins!");
                 playGame = false;
             }
-            if(playerTwo.hitPointsCurrent <= 0){
+            if(playerTwo.hitPoints <= 0){
                 System.out.println(playerTwo.name + " has been defeated!" + playerOne.name + " wins!");
                 playGame = false;
             }

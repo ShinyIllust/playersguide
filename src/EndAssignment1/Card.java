@@ -3,9 +3,8 @@ package EndAssignment1;
 public class Card {
     private final int suit;
     private final int rank;
-    int value;
-    String suitName;
-    String rankName;
+    protected int value;
+    private String suitName;
 
     protected Card(int suit, int rank){
         this.suit = suit;
@@ -36,19 +35,12 @@ public class Card {
                 break;
         }
 
-        switch(rank){
-            case 11:
-                rankName = CardRank.JACK.name();
-                break;
-            case 12:
-                rankName = CardRank.QUEEN.name();
-                break;
-            case 13:
-                rankName = CardRank.KING.name();
-                break;
-            default:
-                rankName = String.valueOf(rank);
-        }
+        String rankName = switch (rank) {
+            case 11 -> "JACK";
+            case 12 -> "QUEEN";
+            case 13 -> "KING";
+            default -> String.valueOf(rank);
+        };
         return rankName + " OF " + suitName;
     }
 }

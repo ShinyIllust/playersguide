@@ -20,13 +20,13 @@ public class Deck {
         }
     }
 
-    void shuffleDeck(){
+    protected void shuffleDeck(){
         List<Card> deckList = Arrays.asList(this.deck);
         Collections.shuffle(deckList);
         deckList.toArray(new Card[0]);
     }
 
-    Card drawCard(){
+    protected Card drawCard(){
         cardsDrawn++;
         return deck[cardsDrawn];
     }

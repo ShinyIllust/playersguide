@@ -4,31 +4,30 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Player {
-    protected int hitPointsMax = 30;
-    int hitPointsCurrent;
-    String name;
-    Card[] hand = new Card[11];
-    Deck deck;
-    int score = 0;
-    int lastScore;
-    boolean inTheGame = true;
+    protected int hitPoints;
+    protected String name;
+    protected Card[] hand = new Card[11];
+    private final Deck deck;
+    private int score = 0;
+    protected int lastScore;
+    protected boolean inTheGame = true;
 
-    Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     Player(String name){
-        this.hitPointsCurrent = hitPointsMax;
+        this.hitPoints = 30;
         this.name = name;
         this.deck = new Deck();
         deck.shuffleDeck();
     }
 
-    void drawTwo(){
+    protected void drawTwo(){
         hand[0] = deck.drawCard();
         hand[1] = deck.drawCard();
         inTheGame = true;
     }
 
-    void takeTurn(int turnCount){
+    protected void takeTurn(int turnCount){
         System.out.println(name + "'s turn!");
         System.out.print("Your hand: ");
         System.out.println(Arrays.toString(hand));
@@ -51,7 +50,7 @@ public class Player {
         }
     }
 
-    int checkScore(){
+    private int checkScore(){
         for(Card card : hand){
             if (card != null) {
                 score = score + card.value;
@@ -79,31 +78,31 @@ public class Player {
         return lastScore;
     }
 
-    Card turnHit(){
+    private Card turnHit(){
         Card card = deck.drawCard();
         System.out.println("You drew: " + card);
         return card;
     }
 
-    void turnStand(){
+    private void turnStand(){
         System.out.println(name + " stands!");
         inTheGame = false;
     }
 
-    void goBust(){
+    private void goBust(){
         System.out.println("BUST!");
         lastScore = 0;
         inTheGame = false;
     }
 
-    int attack(){
+    protected int attack(){
         System.out.println(name + " attacks!");
         return lastScore;
     }
 
-    void defend(int attack){
+    protected void defend(int attack){
         System.out.println((attack - lastScore) + " damage!");
-        hitPointsCurrent = hitPointsCurrent - (attack - lastScore);
-        System.out.println(name + " has " + hitPointsCurrent + " HP left!");
+        hitPoints = hitPoints - (attack - lastScore);
+        System.out.println(name + " has " + hitPoints + " HP left!");
     }
 }
