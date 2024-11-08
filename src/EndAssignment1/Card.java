@@ -1,12 +1,12 @@
 package EndAssignment1;
 
-public class Card {
+public final class Card {
     private final int suit;
     private final int rank;
-    protected int value;
+    int value;
     private String suitName;
 
-    protected Card(int suit, int rank){
+    Card(int suit, int rank){
         this.suit = suit;
         this.rank = rank;
         //Set face cards to a value of 10, set Aces to a value of 11.
