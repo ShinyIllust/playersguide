@@ -9,25 +9,25 @@ public class Deck {
 
     private final Card[] deck = new Card[52];
 
-    Deck(){
+    Deck() {
         //Create a deck of cards, one of each combination of suit and rank.
         int cardIndex = 0;
-        for(int s = 1; s <= 4; s++){
-            for(int r = 1; r <= 13; r++){
+        for (int s = 1; s <= 4; s++) {
+            for (int r = 1; r <= 13; r++) {
                 deck[cardIndex] = new Card(s, r);
                 cardIndex++;
             }
         }
     }
 
-    protected void shuffleDeck(){
+    protected void shuffleDeck() {
         List<Card> deckList = Arrays.asList(this.deck);
         Collections.shuffle(deckList);
         deckList.toArray(new Card[0]);
     }
 
-    protected Card drawCard(){
-        if(cardsDrawn >= 52){
+    protected Card drawCard() {
+        if (cardsDrawn >= 52) {
             System.out.println("You are out of cards! Shuffling your deck...");
             shuffleDeck();
             cardsDrawn = -1;

@@ -14,19 +14,19 @@ public class Player {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    Player(String name){
+    Player(String name) {
         this.hitPoints = 30;
         this.name = name;
         this.deck = new Deck();
         deck.shuffleDeck();
     }
 
-    protected void drawTwo(){
+    protected void drawTwo() {
         hand[0] = deck.drawCard();
         hand[1] = deck.drawCard();
     }
 
-    protected void takeTurn(int turnCount){
+    protected void takeTurn(int turnCount) {
         System.out.println(name + "'s turn!");
         System.out.print("Your hand: ");
         System.out.println(Arrays.toString(hand));
@@ -36,7 +36,7 @@ public class Player {
 
         System.out.println("What do you do? (HIT, STAND)");
         String action = scanner.nextLine().toUpperCase();
-        switch(action){
+        switch (action) {
             case "HIT":
                 hand[turnCount + 2] = turnHit();
                 System.out.println("Hand score: " + checkScore());
@@ -49,17 +49,17 @@ public class Player {
         }
     }
 
-    private int checkScore(){
-        for(Card card : hand){
+    private int checkScore() {
+        for (Card card : hand) {
             if (card != null) {
                 score = score + card.value;
             }
         }
         //If the score is above 21 and an ace is present, have it count as 1 rather than 11.
-        if(score > 21){
-            for(Card card : hand){
+        if (score > 21) {
+            for (Card card : hand) {
                 if (card != null) {
-                    if (card.value == 11){
+                    if (card.value == 11) {
                         score = score - 10;
                     }
                 }
@@ -71,41 +71,41 @@ public class Player {
         score = 0;
 
         //Bust the player if their score is above 21.
-        if(lastScore > 21){
+        if (lastScore > 21) {
             goBust();
         }
         return lastScore;
     }
 
-    private Card turnHit(){
+    private Card turnHit() {
         Card card = deck.drawCard();
         System.out.println("You drew: " + card);
         return card;
     }
 
-    private void turnStand(){
+    private void turnStand() {
         System.out.println(name + " stands!");
         inTheGame = false;
     }
 
-    private void goBust(){
+    private void goBust() {
         System.out.println("BUST!");
         lastScore = 0;
         inTheGame = false;
     }
 
-    protected int attack(){
+    protected int attack() {
         System.out.println(name + " attacks!");
         return lastScore;
     }
 
-    protected void defend(int attack){
+    protected void defend(int attack) {
         System.out.println((attack - lastScore) + " damage!");
         hitPoints = hitPoints - (attack - lastScore);
         System.out.println(name + " has " + hitPoints + " HP left!");
     }
 
-    void clearHand(){
+    void clearHand() {
         Arrays.fill(hand, null);
         inTheGame = true;
     }

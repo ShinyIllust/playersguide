@@ -3,7 +3,7 @@ package EndAssignment1;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         /*
          * Rules: Players draw cards from their shuffled deck.
          * Before each draw, players can choose to drop out of the round.
@@ -28,11 +28,11 @@ public class Main {
         Player playerTwo = new Player(scanner.nextLine());
 
         //Start the game.
-        while(playGame){
-            if(activeTurn){
+        while (playGame) {
+            if (activeTurn) {
 
                 //On a new round, display HP and draw two cards.
-                if(turnCount == 0){
+                if (turnCount == 0) {
                     System.out.println(playerOne.name + " has " + playerOne.hitPoints + " HP.");
                     playerOne.drawTwo();
                 }
@@ -46,7 +46,7 @@ public class Main {
             } else {
 
                 //On a new round, display HP and draw two cards.
-                if(turnCount == 0){
+                if (turnCount == 0) {
                     System.out.println(playerTwo.name + " has " + playerTwo.hitPoints + " HP.");
                     playerTwo.drawTwo();
                 }
@@ -59,15 +59,15 @@ public class Main {
             }
 
             //When both players are out of the game, end the round and determine the winner.
-            if (!playerOne.inTheGame && !playerTwo.inTheGame){
+            if (!playerOne.inTheGame && !playerTwo.inTheGame) {
                 turnCount = 0;
                 activeTurn = true;
                 playerOne.clearHand();
                 playerTwo.clearHand();
-                if(playerOne.lastScore > playerTwo.lastScore){
+                if (playerOne.lastScore > playerTwo.lastScore) {
                     System.out.println(playerOne.name + " wins the round!");
                     playerTwo.defend(playerOne.attack());
-                } else if(playerOne.lastScore < playerTwo.lastScore) {
+                } else if (playerOne.lastScore < playerTwo.lastScore) {
                     System.out.println(playerTwo.name + " wins the round!");
                     playerOne.defend(playerTwo.attack());
                 } else {
@@ -76,11 +76,11 @@ public class Main {
             }
 
             //When a player's HP drops to 0, end the game.
-            if(playerOne.hitPoints <= 0){
+            if (playerOne.hitPoints <= 0) {
                 System.out.println(playerOne.name + " has been defeated! " + playerTwo.name + " wins!");
                 playGame = false;
             }
-            if(playerTwo.hitPoints <= 0){
+            if (playerTwo.hitPoints <= 0) {
                 System.out.println(playerTwo.name + " has been defeated! " + playerOne.name + " wins!");
                 playGame = false;
             }
