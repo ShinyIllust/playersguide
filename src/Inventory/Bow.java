@@ -1,7 +1,7 @@
 package Inventory;
 
-public class Bow extends InventoryItem {
-    protected Bow(){
+public final class Bow extends InventoryItem {
+    Bow(){
         this.itemWeight = 1;
         this.itemVolume = 4;
     }

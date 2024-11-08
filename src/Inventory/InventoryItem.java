@@ -1,9 +1,9 @@
 package Inventory;
 
-public class InventoryItem {
-    double itemWeight;
-    double itemVolume;
+public abstract class InventoryItem {
+    protected double itemWeight;
+    protected double itemVolume;
 
-    public InventoryItem(){
+    protected InventoryItem(){
     }
 }

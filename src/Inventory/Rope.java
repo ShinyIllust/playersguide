@@ -1,7 +1,7 @@
 package Inventory;
 
-public class Rope extends InventoryItem {
-    protected Rope(){
+public final class Rope extends InventoryItem {
+    Rope(){
         this.itemWeight = 1;
         this.itemVolume = 1.5;
     }

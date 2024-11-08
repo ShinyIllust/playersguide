@@ -1,7 +1,7 @@
 package Inventory;
 
-public class Water extends InventoryItem {
-    protected Water(){
+public final class Water extends InventoryItem {
+    Water(){
         this.itemWeight = 2;
         this.itemVolume = 3;
     }
