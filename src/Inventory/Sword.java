@@ -1,7 +1,7 @@
 package Inventory;
 
 public class Sword extends InventoryItem {
-    public Sword(){
+    protected Sword(){
         this.itemWeight = 5;
         this.itemVolume = 3;
     }
