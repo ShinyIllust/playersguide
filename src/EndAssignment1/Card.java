@@ -36,11 +36,11 @@ public final class Card {
         }
 
         String rankName = switch (rank) {
-            case 11 -> "JACK";
-            case 12 -> "QUEEN";
-            case 13 -> "KING";
+            case 11 -> "Jack";
+            case 12 -> "Queen";
+            case 13 -> "King";
             default -> String.valueOf(rank);
         };
-        return rankName + " OF " + suitName;
+        return rankName + " of " + suitName;
     }
 }

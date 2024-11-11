@@ -1,4 +1,4 @@
-package Assignments2;
+package Assignments2.Monday;
 
 import java.util.Scanner;
 
@@ -12,7 +12,7 @@ public class Code {
 
         for(Character ch : message.toCharArray()){
             int code = ch.hashCode();
-            if (code >= 97 && code < 123) {
+            if (code > 96 && code < 123) {
                 if (code >= 120) {
                     code = code - 23;
                 } else {
