@@ -39,7 +39,9 @@ public class Pack {
     @Override
     public String toString() {
         String packStatus;
+        String packSize;
         StringBuilder packContent = new StringBuilder();
+        packSize = "Pack size: " + maxItems + ". Weight: " + maxWeight + ". Volume: " + maxVolume + "\n";
         packStatus = "The pack contains:";
         for (InventoryItem inventoryItem : content) {
             if (inventoryItem != null) {
@@ -48,6 +50,6 @@ public class Pack {
                 packStatus = "The pack is empty.";
             }
         }
-        return packStatus + packContent;
+        return packSize + packStatus + packContent;
     }
 }
