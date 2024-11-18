@@ -8,7 +8,7 @@ public enum Material {
     TURKEY(5),
     GOOSE(3);
 
-    int cost;
+    final int cost;
 
     Material(int cost){
         this.cost = cost;

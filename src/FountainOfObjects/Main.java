@@ -1,0 +1,147 @@
+package FountainOfObjects;
+
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        World world;
+        Player player;
+        String command;
+        boolean selectSize = true;
+        boolean runGame = true;
+        String selectedSize;
+        int size = 0;
+        String message;
+
+        while (selectSize) {
+            System.out.println("Select World Size:");
+            System.out.println(Arrays.toString(Size.values()));
+            selectedSize = scanner.nextLine().toUpperCase();
+
+            switch (selectedSize) {
+                case "SMALL":
+                    size = Size.SMALL.size;
+                    selectSize = false;
+                    break;
+                case "MEDIUM":
+                    size = Size.MEDIUM.size;
+                    selectSize = false;
+                    break;
+                case "LARGE":
+                    size = Size.LARGE.size;
+                    selectSize = false;
+                    break;
+                default:
+                    System.out.println("Invalid Size.");
+            }
+        }
+
+        world = new World(size);
+        player = new Player(0, 0, size);
+
+        while (runGame) {
+            System.out.println("----------------------------------------------------------------------------------");
+            //Announce what room the player is currently in.
+            System.out.println("You are in the room at (" + player.x + ", " + player.y + ")");
+            System.out.println(world.rooms[player.x][player.y].announce());
+            //Check if this room kills you.
+            world.rooms[player.x][player.y].checkDanger();
+            //Check if an adjacent room contains a hazard.
+            if (world.rooms[player.x][player.y].x > 0){
+                message = world.rooms[player.x - 1][player.y].announceAdjacent();
+                if(!Objects.equals(message, "")){
+                    System.out.println(message);
+                }
+            }
+            if (world.rooms[player.x][player.y].x < world.size){
+                message = world.rooms[player.x + 1][player.y].announceAdjacent();
+                if(!Objects.equals(message, "")){
+                    System.out.println(message);
+                }
+            }
+            if (world.rooms[player.x][player.y].y > 0){
+                message = world.rooms[player.x][player.y - 1].announceAdjacent();
+                if(!Objects.equals(message, "")){
+                    System.out.println(message);
+                }
+            }
+            if (world.rooms[player.x][player.y].y < world.size){
+                message = world.rooms[player.x][player.y + 1].announceAdjacent();
+                if(!Objects.equals(message, "")){
+                    System.out.println(message);
+                }
+            }
+            if (world.rooms[player.x][player.y].x > 0 && world.rooms[player.x][player.y].y > 0){
+                message = world.rooms[player.x - 1][player.y - 1].announceAdjacent();
+                if(!Objects.equals(message, "")){
+                    System.out.println(message);
+                }
+            }
+            if (world.rooms[player.x][player.y].x < size && world.rooms[player.x][player.y].y < size){
+                message = world.rooms[player.x + 1][player.y + 1].announceAdjacent();
+                if(!Objects.equals(message, "")){
+                    System.out.println(message);
+                }
+            }
+            if (world.rooms[player.x][player.y].x > 0 && world.rooms[player.x][player.y].y < size){
+                message = world.rooms[player.x - 1][player.y + 1].announceAdjacent();
+                if(!Objects.equals(message, "")){
+                    System.out.println(message);
+                }
+            }
+            if (world.rooms[player.x][player.y].x < size && world.rooms[player.x][player.y].y > 0){
+                message = world.rooms[player.x + 1][player.y - 1].announceAdjacent();
+                if(!Objects.equals(message, "")){
+                    System.out.println(message);
+                }
+            }
+            System.out.println("What do you want to do?");
+            command = scanner.nextLine().toUpperCase();
+
+            switch (command) {
+                case "MOVE NORTH":
+                    if (!player.goNorth()) {
+                        System.out.println("Can't go there!");
+                    }
+                    break;
+                case "MOVE SOUTH":
+                    if (!player.goSouth()) {
+                        System.out.println("Can't go there!");
+                    }
+                    break;
+                case "MOVE EAST":
+                    if (!player.goEast()) {
+                        System.out.println("Can't go there!");
+                    }
+                    break;
+                case "MOVE WEST":
+                    if (!player.goWest()) {
+                        System.out.println("Can't go there!");
+                    }
+                    break;
+                case "ENABLE FOUNTAIN":
+                    if (world.rooms[player.x][player.y].feature == 2) {
+                        world.rooms[player.x][player.y].feature = 3;
+                        player.hasEnabledFountain = true;
+                    } else {
+                        System.out.println("You can't do that here!");
+                    }
+                    break;
+                case "LEAVE":
+                    if (world.rooms[player.x][player.y].feature == 1) {
+                        if (player.hasEnabledFountain) {
+                            System.out.println("The Fountain of Objects has been reactivated, and you have escaped with your life!");
+                        } else {
+                            System.out.println("You must first activate the Fountain of Objects!");
+                        }
+                    } else {
+                        System.out.println("You can't do that here!");
+                    }
+                    break;
+            }
+        }
+    }
+}
