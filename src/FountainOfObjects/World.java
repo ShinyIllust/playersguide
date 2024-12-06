@@ -17,6 +17,7 @@ public class World {
         createEntrance();
         createFountain();
         createPit();
+        createAmarok();
     }
 
     void createEntrance(){
@@ -59,13 +60,13 @@ public class World {
                 rooms[1][2].feature = 6;
                 break;
             case 6:
-                rooms[1][4].feature = 4;
-                rooms[4][0].feature = 4;
+                rooms[1][4].feature = 6;
+                rooms[4][0].feature = 6;
                 break;
             case 8:
-                rooms[4][5].feature = 4;
-                rooms[1][5].feature = 4;
-                rooms[3][4].feature = 4;
+                rooms[1][7].feature = 6;
+                rooms[5][3].feature = 6;
+                rooms[4][5].feature = 6;
                 break;
         }
     }

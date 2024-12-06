@@ -56,7 +56,7 @@ public class Main {
                     System.out.println(message);
                 }
             }
-            if (world.rooms[player.x][player.y].x < world.size){
+            if (world.rooms[player.x][player.y].x < world.size - 1){
                 message = world.rooms[player.x + 1][player.y].announceAdjacent();
                 if(!Objects.equals(message, "")){
                     System.out.println(message);
@@ -68,7 +68,7 @@ public class Main {
                     System.out.println(message);
                 }
             }
-            if (world.rooms[player.x][player.y].y < world.size){
+            if (world.rooms[player.x][player.y].y < world.size - 1){
                 message = world.rooms[player.x][player.y + 1].announceAdjacent();
                 if(!Objects.equals(message, "")){
                     System.out.println(message);
@@ -80,13 +80,13 @@ public class Main {
                     System.out.println(message);
                 }
             }
-            if (world.rooms[player.x][player.y].x < size && world.rooms[player.x][player.y].y < size){
+            if (world.rooms[player.x][player.y].x < world.size - 1 && world.rooms[player.x][player.y].y < world.size - 1){
                 message = world.rooms[player.x + 1][player.y + 1].announceAdjacent();
                 if(!Objects.equals(message, "")){
                     System.out.println(message);
                 }
             }
-            if (world.rooms[player.x][player.y].x > 0 && world.rooms[player.x][player.y].y < size){
+            if (world.rooms[player.x][player.y].x > 0 && world.rooms[player.x][player.y].y < world.size - 1){
                 message = world.rooms[player.x - 1][player.y + 1].announceAdjacent();
                 if(!Objects.equals(message, "")){
                     System.out.println(message);
@@ -134,11 +134,60 @@ public class Main {
                     if (world.rooms[player.x][player.y].feature == 1) {
                         if (player.hasEnabledFountain) {
                             System.out.println("The Fountain of Objects has been reactivated, and you have escaped with your life!");
+                            runGame = false;
                         } else {
                             System.out.println("You must first activate the Fountain of Objects!");
                         }
                     } else {
                         System.out.println("You can't do that here!");
+                    }
+                    break;
+                case "SHOOT NORTH":
+                    if(!player.shootNorth()){
+                        System.out.println("Can't shoot there!");
+                    } else {
+                        if(world.rooms[player.x][player.y + 1].feature == 5 || world.rooms[player.x][player.y + 1].feature == 6){
+                            System.out.println("You hit something! The monster is no more!");
+                            world.rooms[player.x][player.y + 1].feature = 0;
+                        } else {
+                            System.out.println("Your arrow did not hit anything...");
+                        }
+                    }
+                    break;
+                case "SHOOT SOUTH":
+                    if(!player.shootSouth()){
+                        System.out.println("Can't shoot there!");
+                    } else {
+                        if(world.rooms[player.x][player.y - 1].feature == 5 || world.rooms[player.x][player.y - 1].feature == 6){
+                            System.out.println("You hit something! The monster is no more!");
+                            world.rooms[player.x][player.y - 1].feature = 0;
+                        } else {
+                            System.out.println("Your arrow did not hit anything...");
+                        }
+                    }
+                    break;
+                case "SHOOT WEST":
+                    if(!player.shootWest()){
+                        System.out.println("Can't shoot there!");
+                    } else {
+                        if(world.rooms[player.x - 1][player.y].feature == 5 || world.rooms[player.x - 1][player.y].feature == 6){
+                            System.out.println("You hit something! The monster is no more!");
+                            world.rooms[player.x - 1][player.y].feature = 0;
+                        } else {
+                            System.out.println("Your arrow did not hit anything...");
+                        }
+                    }
+                    break;
+                case "SHOOT EAST":
+                    if(!player.shootEast()){
+                        System.out.println("Can't shoot there!");
+                    } else {
+                        if(world.rooms[player.x + 1][player.y].feature == 5 || world.rooms[player.x + 1][player.y].feature == 6){
+                            System.out.println("You hit something! The monster is no more!");
+                            world.rooms[player.x + 1][player.y].feature = 0;
+                        } else {
+                            System.out.println("Your arrow did not hit anything...");
+                        }
                     }
                     break;
             }

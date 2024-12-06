@@ -5,6 +5,7 @@ public class Player {
     int y;
     int worldSize;
     boolean hasEnabledFountain = false;
+    int arrows = 5;
 
     Player(int x, int y, int worldSize){
         this.x = x;
@@ -13,7 +14,7 @@ public class Player {
     }
 
     boolean goNorth(){
-        if(y < worldSize){
+        if(y < worldSize - 1){
             y++;
             return true;
         } else {
@@ -31,7 +32,7 @@ public class Player {
     }
 
     boolean goEast(){
-        if(x < worldSize){
+        if(x < worldSize - 1){
             x++;
             return true;
         } else {
@@ -42,6 +43,39 @@ public class Player {
     boolean goWest(){
         if(x > 0){
             x--;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    boolean shootNorth(){
+        if(y < worldSize - 1 && arrows > 0){
+            arrows--;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    boolean shootSouth(){
+        if(y > 0 && arrows > 0){
+            arrows--;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    boolean shootWest(){
+        if(x > 0 && arrows > 0){
+            arrows--;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    boolean shootEast(){
+        if(x < worldSize - 1 && arrows > 0){
+            arrows--;
             return true;
         } else {
             return false;
