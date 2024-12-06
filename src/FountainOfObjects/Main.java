@@ -10,13 +10,12 @@ public class Main {
         World world;
         Player player;
         String command;
-        boolean selectSize = true;
         boolean runGame = true;
         String selectedSize;
         int size = 0;
         String message;
 
-        while (selectSize) {
+        do {
             System.out.println("Select World Size:");
             System.out.println(Arrays.toString(Size.values()));
             selectedSize = scanner.nextLine().toUpperCase();
@@ -24,20 +23,17 @@ public class Main {
             switch (selectedSize) {
                 case "SMALL":
                     size = Size.SMALL.size;
-                    selectSize = false;
                     break;
                 case "MEDIUM":
                     size = Size.MEDIUM.size;
-                    selectSize = false;
                     break;
                 case "LARGE":
                     size = Size.LARGE.size;
-                    selectSize = false;
                     break;
                 default:
                     System.out.println("Invalid Size.");
             }
-        }
+        } while (size == 0);
 
         world = new World(size);
         player = new Player(0, 0, size);
