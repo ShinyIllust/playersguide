@@ -12,9 +12,6 @@ public class StringChecker {
         int vowelCount = 0;
         boolean palindrome;
 
-        //0-9 = numbers
-        //10 = spaces
-        //11-36 = letters
         int[] charCounter = new int[127];
         Arrays.fill(charCounter, 0);
 
